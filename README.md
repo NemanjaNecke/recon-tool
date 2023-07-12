@@ -1,5 +1,9 @@
 Documentation for the Reconciliation Program
-This program is designed to perform reconciliation tasks for financial transactions. It uses a graphical user interface (GUI) built with the Tkinter library in Python. The program can handle different types of reconciliation tasks, including EDC reconciliation, CP reconciliation, and CP transaction reconciliation.
+
+
+This program is designed to perform reconciliation tasks for financial transactions. 
+
+It uses a graphical user interface (GUI) built with the Tkinter library in Python. The program can handle different types of reconciliation tasks, including EDC reconciliation, CP reconciliation, and CP transaction reconciliation.
 
 Class: Reconciler
 This class is responsible for creating the GUI and handling the reconciliation tasks.
