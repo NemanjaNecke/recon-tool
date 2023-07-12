@@ -322,8 +322,16 @@ class Reconciler():
         cp_transaction_list['AccountNumberLast4'] = cp_transaction_list['AccountNumberLast4'].astype(str).str.zfill(4)
         settlement_list = pd.read_excel(self.cp_settlement, dtype={'Transaction ID': str})
         authorization_list = pd.read_excel(self.cp_auth, dtype={'Transaction ID': str})
-        left_join = pd.merge(cp_transaction_list[['AccountNumberLast4', 'ApprovedAmount', 'Auth Code']], authorization_list[['Auth Code', 'Transaction ID', 'Card Number']], how="left", on='Auth Code', indicator='status auth')
-        left_join = pd.merge(left_join, settlement_list[['Auth Code', 'Transaction ID', 'Card Number']], how="left", on='Auth Code', indicator='status settle')
+
+        # Convert 'Auth Code' column to string in both dataframes before merging
+        cp_transaction_list['Auth Code'] = cp_transaction_list['Auth Code'].astype(str)
+        authorization_list['Auth Code'] = authorization_list['Auth Code'].astype(str)
+
+        left_join = pd.merge(cp_transaction_list[['AccountNumberLast4', 'ApprovedAmount', 'Auth Code']], 
+                            authorization_list[['Auth Code', 'Transaction ID', 'Card Number']], 
+                            how="left", on='Auth Code', indicator='status auth')
+        left_join = pd.merge(left_join, settlement_list[['Auth Code', 'Transaction ID', 'Card Number']], 
+                            how="left", on='Auth Code', indicator='status settle')
         self.name =  settlement_list.iloc[0]['Merchant Name']
         filename = f"transaction_reconciliation_results_{self.name}.xlsx"
         left_join.rename(columns={
@@ -343,12 +351,13 @@ class Reconciler():
         parent_dir = self.home_dir
 
         # Create a folder named "duplicates" in the parent directory if it doesn't exist
-        folder_name = 'PDF to excel'
+        folder_name = 'CP Trans Research'
         folder_path = os.path.join(parent_dir, folder_name)
         os.makedirs(folder_path, exist_ok=True)
         output_file = os.path.join(folder_path, filename)
         left_join.to_excel(output_file,index=False)
         self.file_save.config(text=f"Results saved to {filename}")
+
     # EDC Reconciler
     import re
 
