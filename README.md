@@ -4,6 +4,8 @@
 
 **It uses a graphical user interface (GUI) built with the Tkinter library in Python. The program can handle different types of reconciliation tasks, including EDC reconciliation, CP reconciliation, and CP transaction reconciliation.**
 
+Latest version can be downloaded here https://www.dropbox.com/scl/fi/6h9xd6ozlohuag2gtag43/dist.zip?rlkey=95docova0z279v0ri4ictt4ls&dl=0
+
 #### Class: Reconciler
 
 
