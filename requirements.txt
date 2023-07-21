@@ -1,28 +1,11 @@
 # requirements.txt
 
-# GUI library
-tkinter
-
-# Regular expressions
-re
-
-# Date and time manipulation
-datetime
-
-# File and directory operations
-os
 
 # Data manipulation
 pandas
 
 # PDF table extraction
 tabula
-
-# Numerical operations
-numpy
-
-# File system path operations
-pathlib
 
 # PDF file handling
 PyPDF2
